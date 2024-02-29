@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About me
+title: Case study
 subtitle: Why you'd want to go on a date with me
 ---
 
@@ -48,7 +48,7 @@ Conversely, deleting a character entails employing the `delete()` function, wher
 
 ---
 
-## What is a text editor?
+## What is a collaborative text editor?
 
 Certainly! Here's a breakdown of the key concepts addressed about collaborative text editing into different parts:
 
