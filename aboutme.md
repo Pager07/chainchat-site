@@ -14,9 +14,12 @@ That curiosity sparked an idea: why not try to create something similar myself?
 
 And just like that, the concept for ChainChat, a collaborative text editor, was born.
 
-So, the main aim of this project is to create a collaborative text editor, not just any text editor.  
-To make this happen, I decided to go with a library called Slate.js.  
-It's a great starting point because it already provides a solid foundation for building text editors in React.  
+So, the main aim of this project is to create a collaborative text editor, not just any text editor.
+
+To make this happen, I decided to go with a library called Slate.js.
+
+It's a great starting point because it already provides a solid foundation for building text editors in React.
+
 My plan is to build on top of Slate.js to add the collaborative features we need for real-time editing with multiple users.
 
 ## What is a text editor?
@@ -85,3 +88,100 @@ In summary, commutativity ensures that everyone sees the same document, no matte
 
 **Principles for Document Convergence:**
 These principles are super important because they help us achieve something called document convergence. That's just a fancy way of saying that no matter how many people are editing the document at the same time, everyone eventually sees the same thing. It's like making sure everyone's changes come together harmoniously to create one unified document. And that's what collaborative editing is all about—working together seamlessly to produce something awesome!
+
+## Operational Transforms
+
+Operational Transformation (OT) is an algorithmic solution aimed at addressing challenges in collaborative editing environments by comparing concurrent operations performed by multiple users, adjusting them as necessary to prevent potential divergence in the document's content, and seamlessly integrating edits to ensure document coherence.
+
+### Example of OT
+
+Let's consider a simple text document that initially contains the word "hello." Now, imagine two users, Alice and Bob, are simultaneously editing this document using an Operational Transformation (OT) algorithm.
+
+1. **Initial State:**
+
+   - Document: "hello"
+
+2. **Alice's Edit:**
+
+   - Alice decides to insert the word "world" at the beginning of the document. So, her operation is to insert "world" at index 0.
+
+3. **Bob's Edit:**
+   - At the same time, Bob decides to delete the letter "o" from the word "hello." His operation is to delete the character at index 4.
+
+Now, here's where OT comes into play:
+
+- When Alice sends her insertion operation to the server, the server checks if it conflicts with any other concurrent operations. Since Bob's deletion operation (deleting the "o") occurs after Alice's insertion position (index 0), there is no conflict.
+- However, when Bob sends his deletion operation to the server, it conflicts with Alice's insertion because it affects the position where Alice intended to insert "world."
+
+- OT algorithm detects this conflict and transforms Bob's delete operation based on Alice's insertion operation. So, Bob's operation is transformed to delete the character at index 5 instead of index 4.
+
+After the transformations, both operations can be applied in the correct order without causing any inconsistencies. So, Alice's "world" is inserted at the beginning of the document, and Bob's "o" is deleted from the word "hello." The final document state is "worldhell".
+
+This example demonstrates how OT ensures that concurrent edits from multiple users are seamlessly integrated to maintain document coherence and consistency.
+
+In practical terms, OT transforms concurrent operations to maintain document convergence, ensuring consistency and coherence even when multiple users make simultaneous edits.
+
+### Drawback of OT
+
+However, despite its effectiveness, implementing OT poses substantial challenges due to the complexity of the underlying algorithms, often requiring significant time and effort to develop robust OT systems, as acknowledged by the author.
+
+## Conflict-Free Replicated Data Type
+
+Researchers discovered an alternative to Operational Transformation (OT) called Conflict-Free Replicated Data Type (CRDT).
+
+While OT focuses on maintaining the basic structure of a text editor and relies on complex algorithms to achieve collaboration, CRDTs take a different approach.
+
+They modify the underlying data structure of the text editor, adding properties to each character object to enable collaboration more efficiently.
+
+Unlike OT, which primarily uses algorithms, CRDTs use a more complex data structure to achieve simplicity.
+
+It's worth noting that there are various types of CRDTs tailored to different needs, with sequence CRDTs being the most relevant for collaborative text editors.
+
+These CRDTs allow for consistent data replication without the need for coordination between replicas.
+
+To use CRDTs specifically for a collaborative text editor, there are a couple critical requirements.
+
+### Globally Unique Characters
+
+In collaborative editing, it's crucial for each character in the document to have a unique identifier to prevent conflicts and ensure consistency across multiple users.
+
+This uniqueness is achieved by assigning two properties to each character upon insertion: a Site ID and a Site Counter.
+
+The Site ID identifies the user or site where the character was inserted, while the Site Counter keeps track of the number of insertions or deletions at that specific site.
+
+As users make changes to the document, the Site Counter increments accordingly, ensuring that each character's identifier remains globally unique.
+
+With globally unique character identifiers, delete operations can accurately target and remove specific characters, contributing to the overall consistency and reliability of collaborative editing.
+
+#### Example
+
+When a user initiates a delete operation, the CRDT checks whether the targeted character still exists in the document based on its globally unique identifier.
+
+If the character has already been deleted, the delete operation becomes redundant, as the desired outcome (the absence of the character) has already been achieved.
+
+TADAA!! Idempotency achieved!
+
+This idempotent behavior is made possible by leveraging the globally unique character identifiers assigned to each character object, simplifying the handling of delete operations and minimizing inconsistencies in the collaborative editing process
+
+### Globally Ordered Characters
+
+The 2nd requirement for a collaborative text editor CRDT has to do with the positioning of characters.
+
+In collaborative text editing, consistency in the order of characters across all copies of the document is crucial for maintaining coherence.
+
+Each user's addition of a character must reflect uniformly across all copies, ensuring that the same character occupies the same position in every instance of the document.
+
+A hierarchical tree structure, unlike numerical indices, allow for seamless insertion of characters between existing ones without displacing neighbouring characters.
+
+A hierarchical tree structure enables characters to be inserted at various levels between existing positions.
+
+The path required to reach the character/node in the tree structure, represent positions as lists of integers, safeguarding the positions of adjacent characters during insertions.
+
+This project implements adaptive allocation strategy, specifically, LSEQ, to intelligently allocate positions for new character insertions.
+
+**Commutativity of Insertion and Deletion Operations:**
+Utilizing globally ordered characters with fractional indices ensures that insertion and deletion operations can be executed in any order without altering the document's final state.
+
+Concurrent insertion and deletion operations by different users harmoniously coexist without causing conflicts, as each character is uniquely identified by its fractional position.
+
+Insertion of a character does not impede the deletion of another character, preserving document consistency across multiple users.
