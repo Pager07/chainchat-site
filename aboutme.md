@@ -20,6 +20,7 @@ A text editor serves as a platform for manipulating text, allowing users to add 
 
 ![Basic Text Editor Operations]({{ "/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---mDLgjfyHqv81A0KYBLadA---figure---Po90iloTIXIuhAO9NlpkCg.png" | relative_url }} "Basic Text Editor Operations")
 <img src="{{ '/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---mDLgjfyHqv81A0KYBLadA---figure---Po90iloTIXIuhAO9NlpkCg.png' | relative_url }}" alt="Basic Text Editor Operations" title="Basic Text Editor Operations">
+<img src="{{ '/assets/img/globallyUniqueCharacters.png' | relative_url }}" alt="Basic Text Editor Operations" title="Basic Text Editor Operations">
 **Character Representation:**
 
 In a text document, each character possesses a distinct value, such as letters, numbers, or symbols, and occupies a specific numerical index denoting its position within the document. For instance, in the sentence "The quick brown fox," each letter ("T", "h", "e", etc.) occupies a unique position within the sequence.
