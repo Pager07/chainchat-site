@@ -13,6 +13,10 @@ jobs:
           -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
           -e PAGES_REPO_NWO=${{ github.repository }} \
           jekyll/builder:$JEKYLL_VERSION /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+      - name: Run custom script
+        run: |
+          chmod +x ./copy-eraser-content.sh
+          ./copy-eraser-content.sh
 
   deploy:
     name: Deploy to GitHub Pages
