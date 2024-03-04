@@ -18,7 +18,7 @@ The main goal of this project is to develop a collaborative text editor, not jus
 
 A text editor serves as a platform for manipulating text, allowing users to add or remove characters and save the edited text in a file.
 
-![Basic Text Editor Operations]({{ "/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---mDLgjfyHqv81A0KYBLadA---figure---Po90iloTIXIuhAO9NlpkCg.png" | relative_url }} "Basic Text Editor Operations")
+![Basic Text Editor Operations]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---mDLgjfyHqv81A0KYBLadA---figure---Po90iloTIXIuhAO9NlpkCg.png" | relative_url }} "Basic Text Editor Operations")
 <img src="{{ '/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---mDLgjfyHqv81A0KYBLadA---figure---Po90iloTIXIuhAO9NlpkCg.png' | relative_url }}" alt="Basic Text Editor Operations" title="Basic Text Editor Operations">
 <img src="{{ '/assets/img/globallyUniqueCharacters.png' | relative_url }}" alt="Basic Text Editor Operations" title="Basic Text Editor Operations">
 **Character Representation:**
