@@ -288,9 +288,6 @@ exclude:
   - screenshot.png
   - docs/
 
-include:
-  - .eraser
-
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
