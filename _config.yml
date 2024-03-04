@@ -277,6 +277,8 @@ defaults:
     values:
       layout: "page"
 
+include:
+  - .eraser
 # Exclude these files from production site
 exclude:
   - CHANGELOG.md
