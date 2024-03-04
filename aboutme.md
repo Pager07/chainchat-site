@@ -108,9 +108,9 @@ To handle simultaneous insertions by multiple users, the Site ID is appended to 
 
 ## Challenges with Central Relay Server Architecture
 
-This project currently operates on a client-server communication model, enabling collaborative document editing among multiple users. A central server relays operations to all participants within the document's network.
+This inital prototype of the project operated on a client-server communication model, enabling collaborative document editing among multiple users. A central server relays operations to all participants within the document's network.
 
-Originally chosen to handle editing conflicts, this architecture now requires reevaluation due to its limitations.
+Originally chosen to handle editing conflicts, this architecture was reevaluated due to its limitations.
 
 Firstly, there's a notable issue with high latency between users. All operations, regardless of user proximity, are routed through the server. Consequently, even users physically close to each other may experience delays if the server is located elsewhere.
 
@@ -122,7 +122,7 @@ Lastly, dependence on a central server introduces a single point of failure. Any
 
 ## Peer-to-Peer Architecture
 
-To overcome these limitations, a transition to a peer-to-peer architecture can be made where operations are sent directly to each other by users. In this system, rather than having a single server and multiple clients, each user acts as both a client and a server. This eliminates the need for a centralized server to relay operations, allowing users to perform this task themselves at no additional cost. Essentially, users become responsible for relaying operations to others they are connected to.
+To overcome these limitations, a transition to a peer-to-peer architecture is made where operations are sent directly to each other by users. In this system, rather than having a single server and multiple clients, each user acts as both a client and a server. This eliminates the need for a centralized server to relay operations, allowing users to perform this task themselves at no additional cost. Essentially, users become responsible for relaying operations to others they are connected to.
 
 ## Facilitating Direct Messaging
 
@@ -156,7 +156,7 @@ Once the insert operation materializes and is executed, the deletion buffer unde
 
 Furthermore, to forestall the application of duplicate operations, a guard clause is employed to verify if an operation has been executed before processing it.
 
-With these pivotal components in place, an application integrates a custom-built CRDT alongside the Version Vector to ensure document replicas converge seamlessly. The Messenger module manages the transmission of WebRTC messages, while the Editor empowers users to engage with their local document copies.
+With these pivotal components in place, an application integrates a custom-built CRDT alongside the Version Vector to ensure document replicas converge seamlessly. The `Broadcast` module manages the transmission of WebRTC messages, while the Editor empowers users to engage with their local document copies.
 
 In essence, the architecture heralds a peer-to-peer, real-time collaborative text editor, fostering direct message exchange among users and cultivating a secure and private collaboration environment.
 
@@ -228,6 +228,6 @@ Validating the peer-to-peer (P2P) capabilities of ChainChat presents unique test
 
 **Enhanced Document Management**
 
-In the absence of a centralized document storage server, facilitating local document saving became imperative. Responding to this need, a download feature was implemented, allowing users to export the current document as a plain text file to their device.
+In the absence of a centralized document storage server, facilitating local document saving became imperative. A download feature is needed, allowing users to export the current document as a plain text file to their device.
 
-Additionally, to streamline collaboration on existing documents, file upload functionality was introduced. Users can now effortlessly upload files, which are seamlessly integrated into the collaborative environment. This enhancement fosters flexibility and continuity in document editing endeavors.
+Additionally, to streamline collaboration on existing documents, file upload functionality is needed. To allow wsers to effortlessly upload files, which can seamlessly integrated into the collaborative environment. This enhancement will foster flexibility and continuity in document editing endeavors.
