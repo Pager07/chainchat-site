@@ -17,6 +17,8 @@ The main goal of this project is to develop a collaborative text editor, not jus
 
 A text editor serves as a platform for manipulating text, allowing users to add or remove characters and save the edited text in a file.
 
+![Basic Text Editor Operations](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---mDLgjfyHqv81A0KYBLadA---figure---Po90iloTIXIuhAO9NlpkCg.png "Basic Text Editor Operations")
+
 **Character Representation:**
 
 In a text document, each character possesses a distinct value, such as letters, numbers, or symbols, and occupies a specific numerical index denoting its position within the document. For instance, in the sentence "The quick brown fox," each letter ("T", "h", "e", etc.) occupies a unique position within the sequence.
@@ -44,11 +46,15 @@ However, when several users edit a document concurrently, complications arise. I
 
 Collaborative editing poses the challenge of ensuring all participants end up with an identical final document despite simultaneous edits. The issue stems from the fact that the order of applying edits can alter the outcome. For instance, if you insert a paragraph before your friend deletes a sentence, the result differs from if your friend deletes first and then you add.
 
+![Non-Commutative Example](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---afcZpaO8GQ-NBY0i6eLuz---figure---A9oEUAJsFwWoMdlM1uOwxA.png "Non-Commutative Example")
+
 Commutativity ensures that the order of operations doesn't affect the final document. If operations were commutative, the sequence of edits wouldn't matter—the document's outcome would remain consistent. However, non-commutative operations, like simultaneous insertion and deletion, can hinder document convergence, leading to confusion among collaborators.
 
 **Understanding Idempotency:**
 
 In tools like Google Docs, applying the "find and replace all" function to replace a word and clicking "replace" again doesn't produce any changes because all occurrences of the word have already been replaced. This property, known as idempotency, ensures that repeating an operation doesn't alter the document beyond its initial application.
+
+![Non-Idempotency Example](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---WJ_RmazexGFmb5V9kthXV---figure---86jDh0GmgUOAfzWjVnTkzw.png "Non-Idempotency Example")
 
 In collaborative editing, idempotency guarantees that repeating an operation produces the same result each time. This consistency prevents unexpected changes, ensuring a smoother editing experience for all users involved.
 
@@ -65,7 +71,9 @@ These principles are vital for achieving document convergence, ensuring that des
 ## Operational Transforms
 Operational Transformation (OT) is an algorithm devised to address concurrent operations in collaborative editing scenarios. Its primary function is to detect potential conflicts between operations that may prevent documents from converging. If such conflicts are identified, OT modifies or transforms the operations to ensure convergence.
 
-For instance, consider a scenario where User1 receives a delete(0) operation from User2. OT recognizes that since we inserted a new character at position 0, User2's operation must be transformed to delete(1) before it can be applied.
+![Operational Transformation Proccess](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---rche3MWil0n9WbxD2d2a2---figure---XQmzv9hf5MLcZCZknogVvQ.png "Operational Transformation Proccess")
+
+For instance, consider a scenario where User1 receives a `delete(0)` operation from User2. OT recognizes that since we inserted a new character at position 0, User2's operation must be transformed to `delete(1)` before it can be applied.
 
 OT facilitates commutativity and idempotency in operations. It ensures that insertion and deletion operations can be applied in any order without altering the document's outcome. Furthermore, when attempting to delete a character that has already been deleted, OT recognizes and skips redundant operations.
 
@@ -81,6 +89,8 @@ It's important to note that there's a variety of CRDT types tailored for differe
 For effective implementation in a collaborative text editor, CRDTs must meet specific requirements.
 
 ### Globally Unique Characters
+![Globally Unique Characters](undefined "Globally Unique Characters")
+
 In the system, it's crucial that each character is globally unique. This is achieved by assigning a Site ID and Site Counter to every new character upon insertion. As the Site Counter increments with each insertion or deletion at a site, the uniqueness of all characters across the system is ensured.
 
 Having globally unique characters allows precise deletion instructions when a delete request is sent from one user to another. This ensures that the correct character is targeted for deletion.
@@ -92,9 +102,13 @@ In a collaborative text editor, maintaining the order of characters within a doc
 
 When a character is inserted by a user, it should appear in the same position for all users. In the initial editor, surrounding characters might shift when a character is inserted or deleted, leading to non-commutative operations.
 
-To ensure commutativity, fractional indices are used instead of numerical ones. For instance, inserting "H" between "C" and "A" at position 1 becomes inserting at position 0.5, represented as [0, 5].
+To ensure commutativity, fractional indices are used instead of numerical ones. For instance, inserting "E" between "T" and "H" at position 1 becomes inserting at position 0.5, represented as [0, 5].
+
+![Fractional Index](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---af3nhG0XHUWE6_aPsAgVe---figure---2RQsi6dTX81JE5PmZWWgNQ.png "Fractional Index")
 
 Using fractional indices avoids shifting surrounding characters. It can be thought of as inserting characters into a tree structure. If no space exists between positions, the next level is moved to.
+
+![Fractional Index](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---XbgyCnybU-vwcl7nsPPgl---figure---51SWVFGIXxPhWhew2jx3Ew.png "Fractional Index")
 
 The CRDT approach allows globally unique characters with fractionally indexed positions. This means that deleting a character doesn't affect inserting a new one, ensuring commutativity.
 
@@ -108,7 +122,7 @@ As previously mentioned, inserting a globally unique character into the text edi
 
 Given that both utilize tree structures, integrating the CRDT functionality seamlessly aligns with the editor's existing architecture, facilitating smoother synchronization of CRUD operations between the CRDT and the text editor.
 
-![Tree Data Structure](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---Ugabybluylztjpij2cj7o---figure---Hke3nTmr_8IIjzKBrAdWLg.png "Tree Data Structure")
+![Tree Data Structure](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---3fw1TTZ3uB1DczTXq0Vg6---figure---Hke3nTmr_8IIjzKBrAdWLg.png "Tree Data Structure")
 
 **Designing the CRDT Structure**
 
