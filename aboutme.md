@@ -123,7 +123,7 @@ As previously mentioned, inserting a globally unique character into the text edi
 
 Given that both utilize tree structures, integrating the CRDT functionality seamlessly aligns with the editor's existing architecture, facilitating smoother synchronization of CRUD operations between the CRDT and the text editor.
 
-![Tree Data Structure](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---v3P2wgN01bV2LGv293VYo---figure---Hke3nTmr_8IIjzKBrAdWLg.png "Tree Data Structure")
+![Tree Data Structure](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---BBpYP1Qiyp6bbp3L3XQmb---figure---Hke3nTmr_8IIjzKBrAdWLg.png "Tree Data Structure")
 
 
 
@@ -171,7 +171,7 @@ WebRTC, a protocol leveraged for real-time communication over peer-to-peer conne
 
 Consider a scenario where three peers are collaborating on a document. Peer 1 initiates an operation by typing an "A" and dispatching it to both peers. However, Peer 2, in close proximity, swiftly receives the operation but opts to delete it. Consequently, both the insert and delete operations traverse toward Peer 3. Due to the inherent unpredictability of the Internet, the delete operation might reach Peer 3 before the insert operation.
 
-![Figure 1](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---0GmYnNzg8Dy--nQXVb51h---figure---dj1SQnZ-Dhpx7gLlX1Wcuw.png "Figure 1")
+![Figure 1](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---EB5AKYKUnW34M_DOy8rSm---figure---dj1SQnZ-Dhpx7gLlX1Wcuw.png "Figure 1")
 
 To tackle this challenge, the Version Vector strategy was devised. This approach meticulously tracks the operations received from each user, ensuring coherent sequencing.
 
@@ -179,7 +179,7 @@ When an operation is dispatched, it encompasses not only the character object an
 
 Upon receipt of a delete operation, it's stored in a Deletion Buffer. The buffer undergoes processing after each operation to ascertain if the characters have been inserted. If the delete operation's character is absent in the version vector, indicating it hasn't been inserted, the delete operation remains in the buffer until the insert operation surfaces.
 
-![Worse Version Vector Case](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---G2v6ONxCsdNdRSwvZQ_XS---figure---kAmxms3ohk-x98-5oFdsmA.png "Worse Version Vector Case")
+![Worse Version Vector Case](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---ISiF-apo5sOt9VLqyONxV---figure---kAmxms3ohk-x98-5oFdsmA.png "Worse Version Vector Case")
 
 Once the insert operation materializes and is executed, the deletion buffer undergoes another round of processing. This time, the delete operation is extracted from the buffer and executed.
 
