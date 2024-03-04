@@ -278,7 +278,7 @@ defaults:
       layout: "page"
 
 include:
-  - .eraser
+  - eraser
 # Exclude these files from production site
 exclude:
   - CHANGELOG.md
@@ -289,9 +289,6 @@ exclude:
   - README.md
   - screenshot.png
   - docs/
-
-include:
-  - .eraser/
 
 plugins:
   - jekyll-paginate
