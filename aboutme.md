@@ -112,11 +112,11 @@ When a character is inserted by a user, it should appear in the same position fo
 
 To ensure commutativity, fractional indices are used instead of numerical ones. For instance, inserting "E" between "T" and "H" at position 1 becomes inserting at position 0.5, represented as [0, 5].
 
-![Fractional Index](/assets/img/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---af3nhG0XHUWE6_aPsAgVe---figure---2RQsi6dTX81JE5PmZWWgNQ.png "Fractional Index")
+![Fractional Index](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---af3nhG0XHUWE6_aPsAgVe---figure---2RQsi6dTX81JE5PmZWWgNQ.png "Fractional Index")
 
 Using fractional indices avoids shifting surrounding characters. It can be thought of as inserting characters into a tree structure. If no space exists between positions, the next level is moved to.
 
-![Fractional Index](/assets/img/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---XbgyCnybU-vwcl7nsPPgl---figure---51SWVFGIXxPhWhew2jx3Ew.png "Fractional Index")
+![Fractional Index](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---XbgyCnybU-vwcl7nsPPgl---figure---51SWVFGIXxPhWhew2jx3Ew.png "Fractional Index")
 
 The CRDT approach allows globally unique characters with fractionally indexed positions. This means that deleting a character doesn't affect inserting a new one, ensuring commutativity.
 
