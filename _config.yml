@@ -289,7 +289,7 @@ exclude:
   - docs/
 
 include:
-  - .eraser
+  - _eraser
 
 plugins:
   - jekyll-paginate

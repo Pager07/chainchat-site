@@ -1,3 +1,3 @@
-#!/bin/bash
-# Copy the .eraser directory into the _site directory
-cp -r .eraser _site/
+# #!/bin/bash
+# # Copy the _eraser directory into the _site directory
+# cp -r _eraser _site/
