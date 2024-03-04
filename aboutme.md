@@ -3,9 +3,12 @@
 ---
 
 ## layout: page
+
 title: Case study
 subtitle: Why you'd want to go on a date with me
-## Abstract
+
+## Abstracts
+
 I'm a big user of Google Docs for writing. One day, I became curious about how its collaboration feature actually works. This sparked an idea: why not try to create something similar myself?
 
 And just like that, the concept for ChainChat, a collaborative text editor, was born.
@@ -13,6 +16,7 @@ And just like that, the concept for ChainChat, a collaborative text editor, was 
 The main goal of this project is to develop a collaborative text editor, not just any text editor. To achieve this, a library called Slate.js was opted for. It's an excellent starting point as it already offers a robust foundation for building text editors in React. The plan is to extend Slate.js to incorporate the collaborative features necessary for real-time editing with multiple users.
 
 ## The basics of a text editor
+
 **What is a Text Editor?**
 
 A text editor serves as a platform for manipulating text, allowing users to add or remove characters and save the edited text in a file.
@@ -32,6 +36,7 @@ Inserting a new character involves utilizing the insert() function, where users 
 Conversely, deleting a character entails employing the `delete()` function, where users specify the index of the character to be removed. For instance, `delete(1)` would erase the character at index 1, leading to subsequent characters adjusting their positions accordingly.
 
 ## The basics of a collaborative text editor
+
 **1. Setting Up Collaborative Editing:**
 
 Before diving into collaborative editing, it's essential that each participant has their own version of the document. This enables real-time changes, similar to working individually. To synchronize everyone's efforts, an initial version of the project introduces a Central Relay Server. Think of it as a mediator facilitating communication about document changes among users.
@@ -69,6 +74,7 @@ In summary, commutativity ensures consistency in document editing, while idempot
 These principles are vital for achieving document convergence, ensuring that despite simultaneous edits by multiple users, everyone ultimately sees the same document. Collaborative editing thrives on seamless teamwork, where everyone's contributions harmonize to create a unified, cohesive document.
 
 ## Operational Transforms
+
 Operational Transformation (OT) is an algorithm devised to address concurrent operations in collaborative editing scenarios. Its primary function is to detect potential conflicts between operations that may prevent documents from converging. If such conflicts are identified, OT modifies or transforms the operations to ensure convergence.
 
 ![Operational Transformation Proccess](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---rche3MWil0n9WbxD2d2a2---figure---XQmzv9hf5MLcZCZknogVvQ.png "Operational Transformation Proccess")
@@ -80,6 +86,7 @@ OT facilitates commutativity and idempotency in operations. It ensures that inse
 While OT was initially popular and utilized in collaborative editors like Google Wave, Etherpad, and Firepad, its implementation proved challenging. Engineers encountered difficulties due to the complexity of OT algorithms and the time-consuming nature of correct implementation.
 
 ## Conflict-Free Replicated Data Type
+
 CRDTs emerged as an alternative strategy while researchers sought to enhance and simplify Operational Transformation (OT). Unlike OT, which maintains the basic structure of a text editor and relies on algorithms to ensure commutativity and idempotency, CRDTs take a different approach.
 
 Rather than treating characters solely based on their value and absolute position, CRDTs augment the underlying data structure of the text editor. Each character object is endowed with additional properties to facilitate commutativity and idempotency. This structural change enables a simpler algorithm compared to OT.
@@ -89,6 +96,7 @@ It's important to note that there's a variety of CRDT types tailored for differe
 For effective implementation in a collaborative text editor, CRDTs must meet specific requirements.
 
 ### Globally Unique Characters
+
 ![Globally Unique Characters](undefined "Globally Unique Characters")
 
 In the system, it's crucial that each character is globally unique. This is achieved by assigning a Site ID and Site Counter to every new character upon insertion. As the Site Counter increments with each insertion or deletion at a site, the uniqueness of all characters across the system is ensured.
@@ -98,6 +106,7 @@ Having globally unique characters allows precise deletion instructions when a de
 With the CRDT approach, duplicate deletion operations become idempotent. When a delete operation is received by a user, the globally unique character to delete is checked. If the character has already been deleted, the operation becomes redundant. This idempotency is achieved by maintaining globally unique character objects.
 
 ### Globally Ordered Characters
+
 In a collaborative text editor, maintaining the order of characters within a document is essential. However, for each user to have a consistent view, the ensuring that character positions are globally ordered is a necessity.
 
 When a character is inserted by a user, it should appear in the same position for all users. In the initial editor, surrounding characters might shift when a character is inserted or deleted, leading to non-commutative operations.
@@ -115,10 +124,11 @@ The CRDT approach allows globally unique characters with fractionally indexed po
 To handle simultaneous insertions by multiple users, the Site ID is appended to position identifiers as a tiebreaker, ensuring globally unique characters.
 
 ## Implementing CRDT
+
 After understanding the theory behind CRDTs, how can one implement them in code?
 
 **Creating a Web Text Editor**
-As previously mentioned, inserting a globally unique character into the text editor entails adding a node to a tree structure. This project leverages the open-source SlateJs text editor because its underlying data structure operates similarly to a tree. 
+As previously mentioned, inserting a globally unique character into the text editor entails adding a node to a tree structure. This project leverages the open-source SlateJs text editor because its underlying data structure operates similarly to a tree.
 
 Given that both utilize tree structures, integrating the CRDT functionality seamlessly aligns with the editor's existing architecture, facilitating smoother synchronization of CRUD operations between the CRDT and the text editor.
 
@@ -132,7 +142,9 @@ Furthermore, our CRDT needs to manage four fundamental operations:
 2. Local Delete: When a user deletes a character from their local editor, the deletion operation is broadcasted to all other users.
 3. Remote Insert: Upon receiving an insert operation from another user, the recipient inserts the character into their local editor.
 4. Remote Delete: Upon receiving a delete operation from another user, the recipient removes the corresponding character from their local editor.
+
 ## Challenges with Central Relay Server Architecture
+
 This inital prototype of the project operated on a client-server communication model, enabling collaborative document editing among multiple users. A central server relays operations to all participants within the document's network.
 
 Originally chosen to handle editing conflicts, this architecture was reevaluated due to its limitations.
@@ -146,9 +158,11 @@ Additionally, the client-server model necessitates users to trust the server and
 Lastly, dependence on a central server introduces a single point of failure. Any downtime experienced by the server leads to an immediate loss of collaborative capabilities for all users. It's crucial to explore alternative architectures to mitigate these risks.
 
 ## Peer-to-Peer Architecture
+
 To overcome these limitations, a transition to a peer-to-peer architecture is made where operations are sent directly to each other by users. In this system, rather than having a single server and multiple clients, each user acts as both a client and a server. This eliminates the need for a centralized server to relay operations, allowing users to perform this task themselves at no additional cost. Essentially, users become responsible for relaying operations to others they are connected to.
 
 ## Facilitating Direct Messaging
+
 To enable nodes to send and receive messages directly, a technology called WebRTC is leveraged. WebRTC is a protocol designed for real-time communication over peer-to-peer connections. While it's primarily intended for audio or video calling without plugins, its simplicity makes it suitable for text messaging needs.
 
 While WebRTC allows direct communication between users, a small server is necessary to initiate these peer-to-peer connections through a process called "signaling."
@@ -164,6 +178,7 @@ Since many internet users employ wireless routers, the public IP address is dete
 In summary, the signaling server facilitates the establishment of WebRTC data connections, enabling direct messaging between users.
 
 ## Version Vector
+
 WebRTC, a protocol leveraged for real-time communication over peer-to-peer connections, operates on the UDP transport protocol. While UDP facilitates rapid message transmission without awaiting responses, it lacks the assurance of in-order packet delivery. In essence, messages may reach their destination in a different order than they were sent, potentially disrupting the intended sequence of operations.
 
 Consider a scenario where three peers are collaborating on a document. Peer 1 initiates an operation by typing an "A" and dispatching it to both peers. However, Peer 2, in close proximity, swiftly receives the operation but opts to delete it. Consequently, both the insert and delete operations traverse toward Peer 3. Due to the inherent unpredictability of the Internet, the delete operation might reach Peer 3 before the insert operation.
@@ -183,12 +198,16 @@ With these pivotal components in place, an application integrates a custom-built
 In essence, the architecture heralds a peer-to-peer, real-time collaborative text editor, fostering direct message exchange among users and cultivating a secure and private collaboration environment.
 
 ## Implementing CRDT
+
 ## Optimization
+
 When developing with ChainChat, elements within the user experience that needed refinement were identified. These observations led to categorizing areas for improvement into 2 distinct sections:
 
 1. Streamlining Peer-to-Peer Connection Management
 2. Introducing New Editor Features
+
 ### Improving Peer-to-Peer Connectivity
+
 Enhancing the management of WebRTC connections among users was the primary goal. Although WebRTC facilitates direct user-to-user connections, it falls upon developers to effectively handle and distribute these connections throughout the network.
 
 It's crucial to clarify that in this context, the term "network" refers to all users collaborating on a document, forming a web of peer-to-peer connections. Here, the "network" comprises users exclusively, without any involvement of servers.
@@ -221,6 +240,7 @@ However, through extensive testing, unexpected bugs were encountered when the ne
 While the solution reduces the likelihood of a single point of failure, it doesn't completely eliminate the formation of bottlenecks.
 
 ### Revamping Editor Functionality
+
 Upon exploring ChainChat, (family/friend) users testing identified areas for improvement within the in-browser editor. The enhancement of two vital aspects was prioritized: remote cursors and video chat integration
 
 **Remote Cursors**
@@ -230,6 +250,7 @@ In the realm of collaborative editing, clarity and coordination are paramount. T
 Expanding ChainChat's communication toolkit, video chat functionality was seamlessly integrated using WebRTC. This enhancement empowers users to initiate video calls with peers, enabling real-time visual communication within the collaborative workspace.
 
 ## Exploring Future Innovations
+
 **Diversified Connection Strategies**
 
 To enrich the collaborative experience, strategies to optimize connection distribution within the network are being explored. One promising approach involves new users initially establishing connections with multiple peers. This proactive measure is designed to minimize the likelihood of collaborators becoming isolated due to connection disruptions, thereby fostering a more seamless collaboration environment.
@@ -247,6 +268,5 @@ Validating the peer-to-peer (P2P) capabilities of ChainChat presents unique test
 In the absence of a centralized document storage server, facilitating local document saving became imperative. A download feature is needed, allowing users to export the current document as a plain text file to their device.
 
 Additionally, to streamline collaboration on existing documents, file upload functionality is needed. To allow wsers to effortlessly upload files, which can seamlessly integrated into the collaborative environment. This enhancement will foster flexibility and continuity in document editing endeavors.
-
 
 <!--- Eraser file: https://app.eraser.io/workspace/kHp070cwYZHUvw8DVmIw --->
