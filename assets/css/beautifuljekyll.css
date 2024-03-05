@@ -1096,7 +1096,6 @@ pre {
 
 
 /* Team */
-
 .team {
   margin: 0;
   padding: 0;
@@ -1110,6 +1109,7 @@ pre {
 }
 
 .team-member img {
+  border-radius: 5%;
   height: 243px;
 }
 
