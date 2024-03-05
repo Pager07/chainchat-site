@@ -5,9 +5,9 @@ subtitle: Real time colaborative text editor
 share-title: true
 ---
 
-[ChainChat](https://zoom-meets-production.up.railway.app/) is a collaborative text editor, not just any text editor. The case study walks you through the journey from the intial idea, to the research of academic literature, design and implementation of the final product.
+[ChainChat](https://web-production-3149.up.railway.app/) is a collaborative text editor, not just any text editor. The case study walks you through the journey from the intial idea, to the research of academic literature, design and implementation of the final product.
 
-## [Click here](https://zoom-meets-production.up.railway.app/) to start using ChainChat right now!
+## [Click here](https://web-production-3149.up.railway.app/) to start using ChainChat right now!
 
 _Please note that ChainChat works best in Desktop_
 
