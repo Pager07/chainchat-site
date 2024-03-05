@@ -50,7 +50,7 @@ round-avatar: true
 social-network-links:
   # email: "someone@example.com"
   # facebook: deanattali
-  github: https://github.com/chainchat-team
+  # github: https://github.com/chainchat-team
   # twitter: daattali
   # patreon: DeanAttali
   # youtube: "@daattali"
@@ -95,7 +95,7 @@ share-links-active:
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "https://github.com/chainchat-team"
+# url-pretty: "https://github.com/chainchat-team"
 
 # Add the website title to the title of every page
 title-on-all-pages: true
