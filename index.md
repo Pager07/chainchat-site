@@ -11,6 +11,8 @@ share-title: true
 
 _Please note that ChainChat works best in Desktop_
 
+![ChainChat Demo]({{ "/assets/img/chainchat-demo.gif" | relative_url }} "Non-Commutative Example")
+
 I'm a big user of Google Docs for writing. One day, I became curious about how its collaboration feature actually works. This sparked an idea: why not try to create something similar myself?
 
 And just like that, the concept for ChainChat, a collaborative text editor, was born.
