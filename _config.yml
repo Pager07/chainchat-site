@@ -20,9 +20,9 @@ author: chainchat-team
 ###############################################
 
 navbar-links:
-  Case study: "aboutme"
-  Team: "team"
-  Try it: "https://zoom-meets-production.up.railway.app/"
+  Case study: "index"
+  Our Team: "team"
+  Try it!: "https://zoom-meets-production.up.railway.app/"
   Fork on Github: "https://github.com/orgs/chainchat-team/repositories"
 
 ################
