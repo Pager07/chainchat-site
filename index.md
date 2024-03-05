@@ -5,15 +5,32 @@ subtitle: Real time colaborative text editor
 share-title: true
 ---
 
-## Abstracts
+[ChainChat](https://zoom-meets-production.up.railway.app/) is a collaborative text editor, not just any text editor. The case study walks you through the journey from the intial idea, to the research of academic literature, design and implementation of the final product.
+
+## [Click here](https://zoom-meets-production.up.railway.app/) to start using Conclave right now!
+
+_Please note that ChainChat is work best in Desktop_
 
 I'm a big user of Google Docs for writing. One day, I became curious about how its collaboration feature actually works. This sparked an idea: why not try to create something similar myself?
 
 And just like that, the concept for ChainChat, a collaborative text editor, was born.
 
-The main goal of this project is to develop a collaborative text editor, not just any text editor. To achieve this, a library called Slate.js was opted for. It's an excellent starting point as it already offers a robust foundation for building text editors in React. The plan is to extend Slate.js to incorporate the collaborative features necessary for real-time editing with multiple users.
+# Table of Contents
 
-## The basics of a text editor
+1. [Introduction to ChainChat](#introduction-to-chainchat)
+2. [The Basics of Text Editing](#the-basics-of-text-editing)
+3. [The Basics of Collaborative Text Editing](#the-basics-of-collaborative-text-editing)
+4. [Operational Transforms (OT)](#operational-transform)
+5. [Conflict-Free Replicated Data Type (CRDT)](#Conflict-Free-Replicated-Data-Type)
+6. [Challenges with Central Relay Server Architecture](#challenges-with-central-relay-server-architecture)
+7. [Peer-to-Peer Architecture](#peer-to-peer-architecture)
+8. [Version Vector](#version-vector)
+9. [Optimization](#optimization)
+10. [Exploring Future Innovations](#exploring-future-innovations)
+
+---
+
+## The basics of text editing
 
 **What is a Text Editor?**
 
@@ -69,7 +86,7 @@ In summary, commutativity ensures consistency in document editing, while idempot
 
 These principles are vital for achieving document convergence, ensuring that despite simultaneous edits by multiple users, everyone ultimately sees the same document. Collaborative editing thrives on seamless teamwork, where everyone's contributions harmonize to create a unified, cohesive document.
 
-## Operational Transforms
+## Operational Transform
 
 Operational Transformation (OT) is an algorithm devised to address concurrent operations in collaborative editing scenarios. Its primary function is to detect potential conflicts between operations that may prevent documents from converging. If such conflicts are identified, OT modifies or transforms the operations to ensure convergence.
 
