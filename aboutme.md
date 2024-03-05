@@ -19,9 +19,6 @@ The main goal of this project is to develop a collaborative text editor, not jus
 A text editor serves as a platform for manipulating text, allowing users to add or remove characters and save the edited text in a file.
 
 ![Basic Text Editor Operations]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---mDLgjfyHqv81A0KYBLadA---figure---Po90iloTIXIuhAO9NlpkCg.png" | relative_url }} "Basic Text Editor Operations")
-<img src="{{ '/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---mDLgjfyHqv81A0KYBLadA---figure---Po90iloTIXIuhAO9NlpkCg.png' | relative_url }}" alt="Basic Text Editor Operations" title="Basic Text Editor Operations">
-<img src="{{ '/assets/img/globallyUniqueCharacters.png' | relative_url }}" alt="Basic Text Editor Operations" title="Basic Text Editor Operations">
-**Character Representation:**
 
 In a text document, each character possesses a distinct value, such as letters, numbers, or symbols, and occupies a specific numerical index denoting its position within the document. For instance, in the sentence "The quick brown fox," each letter ("T", "h", "e", etc.) occupies a unique position within the sequence.
 
@@ -49,7 +46,7 @@ However, when several users edit a document concurrently, complications arise. I
 
 Collaborative editing poses the challenge of ensuring all participants end up with an identical final document despite simultaneous edits. The issue stems from the fact that the order of applying edits can alter the outcome. For instance, if you insert a paragraph before your friend deletes a sentence, the result differs from if your friend deletes first and then you add.
 
-![Non-Commutative Example](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---afcZpaO8GQ-NBY0i6eLuz---figure---A9oEUAJsFwWoMdlM1uOwxA.png "Non-Commutative Example")
+![Non-Commutative Example]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---afcZpaO8GQ-NBY0i6eLuz---figure---A9oEUAJsFwWoMdlM1uOwxA.png" | relative_url }} "Non-Commutative Example")
 
 Commutativity ensures that the order of operations doesn't affect the final document. If operations were commutative, the sequence of edits wouldn't matter—the document's outcome would remain consistent. However, non-commutative operations, like simultaneous insertion and deletion, can hinder document convergence, leading to confusion among collaborators.
 
@@ -57,7 +54,7 @@ Commutativity ensures that the order of operations doesn't affect the final docu
 
 In tools like Google Docs, applying the "find and replace all" function to replace a word and clicking "replace" again doesn't produce any changes because all occurrences of the word have already been replaced. This property, known as idempotency, ensures that repeating an operation doesn't alter the document beyond its initial application.
 
-![Non-Idempotency Example](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---WJ_RmazexGFmb5V9kthXV---figure---86jDh0GmgUOAfzWjVnTkzw.png "Non-Idempotency Example")
+![Non-Idempotency Example]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---WJ_RmazexGFmb5V9kthXV---figure---86jDh0GmgUOAfzWjVnTkzw.png" | relative_url }} "Non-Idempotency Example")
 
 In collaborative editing, idempotency guarantees that repeating an operation produces the same result each time. This consistency prevents unexpected changes, ensuring a smoother editing experience for all users involved.
 
@@ -75,7 +72,7 @@ These principles are vital for achieving document convergence, ensuring that des
 
 Operational Transformation (OT) is an algorithm devised to address concurrent operations in collaborative editing scenarios. Its primary function is to detect potential conflicts between operations that may prevent documents from converging. If such conflicts are identified, OT modifies or transforms the operations to ensure convergence.
 
-![Operational Transformation Proccess](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---rche3MWil0n9WbxD2d2a2---figure---XQmzv9hf5MLcZCZknogVvQ.png "Operational Transformation Proccess")
+![Operational Transformation Proccess]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---rche3MWil0n9WbxD2d2a2---figure---XQmzv9hf5MLcZCZknogVvQ.png" | relative_url }} "Operational Transformation Proccess")
 
 For instance, consider a scenario where User1 receives a `delete(0)` operation from User2. OT recognizes that since we inserted a new character at position 0, User2's operation must be transformed to `delete(1)` before it can be applied.
 
@@ -95,9 +92,9 @@ For effective implementation in a collaborative text editor, CRDTs must meet spe
 
 ### Globally Unique Characters
 
-![Peer Sending Data](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---3jC5uUJq6BLjdkSOFEHrf---figure---iiG8aha692RDz58as9fJRQ.png "Peer Sending Data")
+![Peer Sending Data]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---3jC5uUJq6BLjdkSOFEHrf---figure---iiG8aha692RDz58as9fJRQ.png" | relative_url }} "Peer Sending Data")
 
-![Globally Unique Characters](/.eraser/globallyUniqueCharacters.png "Globally Unique Characters")
+![Globally Unique Characters]({{ "/eraser/globallyUniqueCharacters.png" | relative_url }} "Globally Unique Characters")
 
 In the system, it's crucial that each character is globally unique. This is achieved by assigning a Site ID and Site Counter to every new character upon insertion. As the Site Counter increments with each insertion or deletion at a site, the uniqueness of all characters across the system is ensured.
 
@@ -113,11 +110,11 @@ When a character is inserted by a user, it should appear in the same position fo
 
 To ensure commutativity, fractional indices are used instead of numerical ones. For instance, inserting "E" between "T" and "H" at position 1 becomes inserting at position 0.5, represented as [0, 5].
 
-![Fractional Index](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---af3nhG0XHUWE6_aPsAgVe---figure---2RQsi6dTX81JE5PmZWWgNQ.png "Fractional Index")
+![Fractional Index]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---af3nhG0XHUWE6_aPsAgVe---figure---2RQsi6dTX81JE5PmZWWgNQ.png" | relative_url }} "Fractional Index")
 
 Using fractional indices avoids shifting surrounding characters. It can be thought of as inserting characters into a tree structure. If no space exists between positions, the next level is moved to.
 
-![Fractional Index](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---XbgyCnybU-vwcl7nsPPgl---figure---51SWVFGIXxPhWhew2jx3Ew.png "Fractional Index")
+![Fractional Index]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---XbgyCnybU-vwcl7nsPPgl---figure---51SWVFGIXxPhWhew2jx3Ew.png" | relative_url }} "Fractional Index")
 
 The CRDT approach allows globally unique characters with fractionally indexed positions. This means that deleting a character doesn't affect inserting a new one, ensuring commutativity.
 
@@ -132,7 +129,7 @@ As previously mentioned, inserting a globally unique character into the text edi
 
 Given that both utilize tree structures, integrating the CRDT functionality seamlessly aligns with the editor's existing architecture, facilitating smoother synchronization of CRUD operations between the CRDT and the text editor.
 
-![Tree Data Structure](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---q5BDpltJQC0kcHJ9VGMAl---figure---Hke3nTmr_8IIjzKBrAdWLg.png "Tree Data Structure")
+![Tree Data Structure]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---q5BDpltJQC0kcHJ9VGMAl---figure---Hke3nTmr_8IIjzKBrAdWLg.png" | relative_url }} "Tree Data Structure")
 
 **Designing the CRDT Structure**
 
@@ -183,7 +180,7 @@ WebRTC, a protocol leveraged for real-time communication over peer-to-peer conne
 
 Consider a scenario where three peers are collaborating on a document. Peer 1 initiates an operation by typing an "A" and dispatching it to both peers. However, Peer 2, in close proximity, swiftly receives the operation but opts to delete it. Consequently, both the insert and delete operations traverse toward Peer 3. Due to the inherent unpredictability of the Internet, the delete operation might reach Peer 3 before the insert operation.
 
-![Figure 1](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---xnbNt23QSlHrY0qkCmuOn---figure---dj1SQnZ-Dhpx7gLlX1Wcuw.png "Figure 1")
+![Figure 1]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---xnbNt23QSlHrY0qkCmuOn---figure---dj1SQnZ-Dhpx7gLlX1Wcuw.png" | relative_url }} "Figure 1")
 
 To tackle this challenge, the Version Vector strategy was devised. This approach meticulously tracks the operations received from each user, ensuring coherent sequencing.
 
@@ -191,7 +188,7 @@ When an operation is dispatched, it encompasses not only the character object an
 
 Upon receipt of a delete operation, it's stored in a Deletion Buffer. The buffer undergoes processing after each operation to ascertain if the characters have been inserted. If the delete operation's character is absent in the version vector, indicating it hasn't been inserted, the delete operation remains in the buffer until the insert operation surfaces.
 
-![Worse Version Vector Case](/.eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---C1WHuEh4brEYfycUFHo_1---figure---kAmxms3ohk-x98-5oFdsmA.png "Worse Version Vector Case")
+![Worse Version Vector Case]({{ "/eraser/kHp070cwYZHUvw8DVmIw___plChzyHPUBexUglVwzpTogxbaxO2___---figure---C1WHuEh4brEYfycUFHo_1---figure---kAmxms3ohk-x98-5oFdsmA.png" | relative_url }} "Worse Version Vector Case")
 
 Once the insert operation materializes and is executed, the deletion buffer undergoes another round of processing. This time, the delete operation is extracted from the buffer and executed.
 
