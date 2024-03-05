@@ -9,7 +9,7 @@ share-title: true
 
 ## [Click here](https://zoom-meets-production.up.railway.app/) to start using ChainChat right now!
 
-_Please note that ChainChat is work best in Desktop_
+_Please note that ChainChat works best in Desktop_
 
 I'm a big user of Google Docs for writing. One day, I became curious about how its collaboration feature actually works. This sparked an idea: why not try to create something similar myself?
 
