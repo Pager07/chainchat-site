@@ -7,7 +7,7 @@ share-title: true
 
 [ChainChat](https://zoom-meets-production.up.railway.app/) is a collaborative text editor, not just any text editor. The case study walks you through the journey from the intial idea, to the research of academic literature, design and implementation of the final product.
 
-## [Click here](https://zoom-meets-production.up.railway.app/) to start using Conclave right now!
+## [Click here](https://zoom-meets-production.up.railway.app/) to start using ChainChat right now!
 
 _Please note that ChainChat is work best in Desktop_
 
