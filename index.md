@@ -48,7 +48,7 @@ Inserting a new character involves utilizing the insert() function, where users 
 
 Conversely, deleting a character entails employing the `delete()` function, where users specify the index of the character to be removed. For instance, `delete(1)` would erase the character at index 1, leading to subsequent characters adjusting their positions accordingly.
 
-## The basics of a collaborative text editor
+## The Basics of Collaborative Text Editing
 
 **1. Setting Up Collaborative Editing:**
 
