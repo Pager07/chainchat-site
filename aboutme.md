@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Case study
-subtitle: Why you'd want to go on a date with me
+title: ChainChat
+subtitle: Real time colaborative text editor
 ---
 
 ## Abstracts

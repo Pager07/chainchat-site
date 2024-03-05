@@ -21,10 +21,9 @@ author: chainchat-team
 
 navbar-links:
   Case study: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  Team: "team"
+  Try it: "https://zoom-meets-production.up.railway.app/"
+  Fork on Github: "https://github.com/orgs/chainchat-team/repositories"
 
 ################
 # --- Logo --- #
