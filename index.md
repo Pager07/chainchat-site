@@ -21,7 +21,7 @@ And just like that, the concept for ChainChat, a collaborative text editor, was 
 2. [The Basics of Text Editing](#the-basics-of-text-editing)
 3. [The Basics of Collaborative Text Editing](#the-basics-of-collaborative-text-editing)
 4. [Operational Transforms (OT)](#operational-transform)
-5. [Conflict-Free Replicated Data Type (CRDT)](#Conflict-Free-Replicated-Data-Type)
+5. [Conflict-Free Replicated Data Type (CRDT)](#conflict-free-replicated-data-type)
 6. [Challenges with Central Relay Server Architecture](#challenges-with-central-relay-server-architecture)
 7. [Peer-to-Peer Architecture](#peer-to-peer-architecture)
 8. [Version Vector](#version-vector)
