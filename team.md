@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Our Team
+title: ChainChat Team
 ---
 
 {% include team.html %}
